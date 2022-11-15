@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+state=$(cat /sys/class/power_supply/BAT0/status)
+
+if [ "$state" == "Charging" ]; then
+  echo 1
+elif [ "$state" == "Discharging" ]; then
+  echo 0
+elif [ "$state" == "Not Charging" ]; then
+  echo 2
+elif [ "$state" == "Full" ]; then
+  echo 3
+else
+  echo -1
+fi
+

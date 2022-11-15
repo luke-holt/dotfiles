@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+lspci=$(lspci | grep -i "wireless")
+device_id=$(echo "$lspci" | cut -f1 -d' ')
+
+lspci -vv -s "$device_id"

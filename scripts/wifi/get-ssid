@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# nmcli | grep "^[a-zA-Z0-9][a-zA-Z0-9-]*:" | grep '\sconnected' | cut -f4 -d' '
+entry=$(nmcli dev wifi | grep '^\*' | head -n1)
+
+ssid=$(echo "$entry" | awk '{print $3}')
+
+echo -n "$ssid"

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Get volume number string
+volume=$($USER_SCRIPTS_DIRECTORY/audio/get-volume-level)
+volume=${volume%$'%'}
+
+# Declare integer
+declare -i num
+num=${volume}+5
+
+# If volume is higher than 100%, set it back to 100%
+if [ $num -gt 100 ]; then
+  # Max volume
+  pactl set-sink-volume @DEFAULT_SINK@ 100%
+else
+  # Increment
+  pactl set-sink-volume @DEFAULT_SINK@ +5%
+fi
+

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Get the UUIDs for bluetooth devices
+devices=$(bluetoothctl devices)
+
+if [ "$devices" == "No default controller available" ]; then
+  echo -n "Disabled"
+else
+  uuids=$(echo "$devices" | cut -f2 -d' ')
+
+  for uuid in $uuids; do
+    # Get info for bluetooth device
+    info=$(bluetoothctl info $uuid)
+
+    # Get connected status for device
+    connected=$(echo "$info" | grep "Connected" | sed -e 's/^[ \t]*//' | cut -d' ' -f2)
+
+    # If devices is connected, return it's name
+    if [ $connected == "yes" ]; then
+      name=$(echo "$info" | grep "Name" | sed -e 's/^[ \t]*//' | cut -d' ' -f2-)
+      echo -n "$name"
+    fi
+  done
+fi
+

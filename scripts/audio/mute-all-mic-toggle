@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for dev in `pactl list sources short | cut -f 1`; do
+  pactl set-source-mute $dev toggle
+done
+
