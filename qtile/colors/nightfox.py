@@ -12,6 +12,13 @@ def scale_brightness(color: str, pct: int) -> str:
     g = scale(int(color[3:5], 16), pct)
     b = scale(int(color[5:], 16), pct)
 
+    if r > 255:
+        r = 255
+    if g > 255:
+        g = 255
+    if b > 255:
+        b = 255
+
     return f"#{r:02x}{g:02x}{b:02x}"
 
 def blend(color_a: str, color_b: str, factor: float) -> str:
@@ -64,5 +71,22 @@ carbonfox = {
 }
 
 if __name__ == "__main__":
-    for item in carbonfox:
-        print(item)
+    colors = [
+        "black",
+        "red",
+        "green",
+        "yellow",
+        "blue",
+        "magenta",
+        "cyan",
+        "white"
+    ]
+
+    for c in colors:
+        print(f"{c}: {carbonfox[c]}")
+    for c in colors:
+        print(f"bright {c}: {scale_brightness(carbonfox[c], 20)}")
+
+    print(f"Dim fg: {carbonfox['fg3']}")
+    print(f"Bright fg: {carbonfox['fg0']}")
+

@@ -103,7 +103,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # TODO: Take screen shot (not working)
-    # Key([mod, "shift"], "s", lazy.spawn("maim -s -u | xclip -selection clipboard -t image/png -i"), desc="Taking screen capture"),
+    Key([mod, "shift"], "s", lazy.spawn(f"{SCRIPTS_DIR}/screenshot", shell=True), desc="Taking screen capture"),
 
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
 

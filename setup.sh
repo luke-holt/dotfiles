@@ -34,6 +34,14 @@ else
   echo "nvim symlink created"
 fi
 
+# Rofi
+if test -L "$config_dir/rofi"; then
+  echo "rofi symlink already exists"
+else
+  ln -s "$(pwd)/nvim" "$config_dir"
+  echo "rofi symlink created"
+fi
+
 # Scripts
 if test -L "$scripts_dir"; then
   echo "scripts symlink already exists"

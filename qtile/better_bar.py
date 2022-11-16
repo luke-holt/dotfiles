@@ -7,24 +7,28 @@ from better_widgets import BetterBattery, BetterBluetooth, BetterVolume, BetterP
 
 SCRIPTS_DIR = os.environ["USER_SCRIPTS_DIRECTORY"]
 
+
 def get_bar(colorscheme: dict, fontsize: int, powerline_size: int):
     """
     Returns the bar.Bar object for the qtile status bar
     """
+    bg = colorscheme["bg"]
+    fg = colorscheme["fg"]
+
     # return default_bar
     return bar.Bar([
         widget.TextBox(
             "    ",
             fontsize=fontsize,
             name="Arch Linux icon",
-            background=colorscheme["bg"],
+            background=bg,
             foreground=colorscheme["cyan"],),
 
         BetterPowerline(
             type=0,
             direction="right",
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             fontsize=powerline_size),
 
         # TODO: Rework group box so that I have numbered workspaces, but also dedicated workspaces like
@@ -32,14 +36,14 @@ def get_bar(colorscheme: dict, fontsize: int, powerline_size: int):
         widget.GroupBox(
             visible_groups=["1", "2", "3", "4", "5", "6", "7", "8", "9"],
             fontsize=fontsize,
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             margin_x=15,
             # margin_y=,
             padding_x=10,
             padding_y=1,
             borderwidth=2,
-            active=colorscheme["bg"],
+            active=bg,
             rounded=True,
             highlight_method="border",
             urgent_alert_method="block",
@@ -56,7 +60,7 @@ def get_bar(colorscheme: dict, fontsize: int, powerline_size: int):
             type=0,
             direction="right",
             background=colorscheme["red"],
-            foreground=colorscheme["fg"],
+            foreground=fg,
             fontsize=powerline_size),
         BetterPowerline(
             type=0,
@@ -79,40 +83,40 @@ def get_bar(colorscheme: dict, fontsize: int, powerline_size: int):
         BetterPowerline(
             type=0,
             direction="right",
-            background=colorscheme["bg"],
+            background=bg,
             foreground=colorscheme["orange"],
             fontsize=powerline_size),
 
         widget.Prompt(
             fontsize=fontsize,
-            background=colorscheme["bg"],
-            foreground=colorscheme["fg"],
+            background=bg,
+            foreground=fg,
             bell_style=None,
             ignore_dups_history=True,
             prompt=" > ",),
 
         # Separator between left and right sides
-        widget.Spacer(background=colorscheme["bg"],),
+        widget.Spacer(background=bg,),
 
         Spotify(
             update_interval=5,
-            background=colorscheme["bg"],
+            background=bg,
             foreground=colorscheme["green"],
             padding=10),
         Discord(
             update_interval=5,
-            background=colorscheme["bg"],
+            background=bg,
             foreground=colorscheme["blue"],
             padding=10),
         widget.TextBox(
-            background=colorscheme["bg"],
-            foreground=colorscheme["bg"],
+            background=bg,
+            foreground=bg,
             text=" "),
 
         BetterPowerline(
             type=0,
             direction="left",
-            background=colorscheme["bg"],
+            background=bg,
             foreground=colorscheme["orange"],
             fontsize=powerline_size),
         BetterPowerline(
@@ -137,14 +141,14 @@ def get_bar(colorscheme: dict, fontsize: int, powerline_size: int):
             type=0,
             direction="left",
             background=colorscheme["red"],
-            foreground=colorscheme["fg"],
+            foreground=fg,
             fontsize=powerline_size),
 
         BetterVolume(
             fontsize=fontsize,
             update_interval=1,
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             # fontsize=23,
             mouse_callbacks={
                 "Button1": lazy.spawn(f"{SCRIPTS_DIR}/audio/mute-all-toggle"),
@@ -154,51 +158,51 @@ def get_bar(colorscheme: dict, fontsize: int, powerline_size: int):
         BetterPowerline(
             type=6,
             direction="left",
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             fontsize=powerline_size),
 
         widget.Backlight(
             padding=10,
             backlight_name="intel_backlight",
             fontsize=fontsize,
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             format=" {percent:2.0%}"),
 
         BetterPowerline(
             type=6,
             direction="left",
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             fontsize=powerline_size),
 
         BetterBattery(
             fontsize=fontsize,
             update_interval=5,
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             low_foreground=colorscheme["red"],
-            low_background=colorscheme["fg"]),
+            low_background=fg),
 
         BetterPowerline(
             type=0,
             direction="left",
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             fontsize=powerline_size),
 
         BetterBluetooth(
             update_interval=5,
             fontsize=fontsize,
-            background=colorscheme["bg"],
-            foreground=colorscheme["fg"],),
+            background=bg,
+            foreground=fg,),
 
         BetterPowerline(
             type=0,
             direction="left",
-            background=colorscheme["bg"],
-            foreground=colorscheme["fg"],
+            background=bg,
+            foreground=fg,
             fontsize=powerline_size),
 
         widget.KeyboardLayout(
@@ -208,32 +212,32 @@ def get_bar(colorscheme: dict, fontsize: int, powerline_size: int):
             mouse_callbacks={
                 "Button1": lazy.spawn(f"{SCRIPTS_DIR}/keyboard/toggle-language"),
             },
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"]),
+            background=fg,
+            foreground=bg),
 
         BetterPowerline(
             type=0,
             direction="left",
-            background=colorscheme["fg"],
-            foreground=colorscheme["bg"],
+            background=fg,
+            foreground=bg,
             fontsize=powerline_size),
 
         widget.Clock(
             fontsize=fontsize,
             format="  %b %d ",
-            background=colorscheme["bg"],
-            foreground=colorscheme["fg"]),
+            background=bg,
+            foreground=fg),
         BetterPowerline(
             type=6,
             direction="left",
-            background=colorscheme["bg"],
-            foreground=colorscheme["fg"],
+            background=bg,
+            foreground=fg,
             fontsize=powerline_size),
         widget.Clock(
             fontsize=fontsize,
             format="  %H:%M ",
-            background=colorscheme["bg"],
-            foreground=colorscheme["fg"]),
+            background=bg,
+            foreground=fg),
         ],
         34, # Bar height
         # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
