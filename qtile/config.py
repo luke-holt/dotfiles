@@ -47,8 +47,6 @@ def startup_once():
 @hook.subscribe.client_new
 async def move_spotify(client):
     await asyncio.sleep(0.01)
-    print(client.name)
-    print('\n')
     if "Spotify" in client.name:
         client.togroup("spotify", switch_group=False)
     if "Brave" in client.name:

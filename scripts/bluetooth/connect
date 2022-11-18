@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+device_list=$(bluetoothctl devices)
+device_uuids="$(echo "$device_list" | cut -f2 -d' ')"
+device_names=$(echo "$device_list" | cut -f3- -d' ')
+
+for entry in $(bluetoothctl devices); do
+  echo $entry
+done
+
