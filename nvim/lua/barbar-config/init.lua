@@ -1,9 +1,8 @@
-vim.g.bufferline = {
-    animations = true,
+require("barbar").setup {
+    animations = false,
     closeable = true,
     clickable = true,
-    icon_separator_inactive = '',
-    icon_separator_active = '',
+    icon_separator_left = '',
     autohide = true,
 
     -- insert buffer at end of line

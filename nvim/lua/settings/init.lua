@@ -5,10 +5,10 @@ vim.notify = require("notify")
 opt.number = true
 opt.relativenumber = true
 
-opt.expandtab = true
+opt.expandtab = false
 opt.smarttab = true
-opt.shiftwidth = 2
-opt.tabstop = 2
+opt.shiftwidth = 4
+opt.tabstop = 4
 opt.autoindent = true
 
 opt.hlsearch = true
